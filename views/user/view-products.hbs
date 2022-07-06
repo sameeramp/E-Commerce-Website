@@ -1,0 +1,83 @@
+<body>
+    
+
+        <div class=" mt-4 products">
+            
+             <div class="row">
+                 {{#each product}}
+            <section class=" col-md-3 ">
+               
+
+                <div class="card my-4 border-secondary">
+                    <img style="" src="/product-image/{{this._id}}.jpeg" class="card-img-top card-image" alt="...">
+                    <div class="card-body">
+                        <h5 style="" class="card-title text-center">{{this.product_name}}</h5>
+                        <p class="card-text " style="" >{{this.product_description}}</p>
+                        <h5 style="" class="card-title mt-4">RS:{{this.prize}}</h5>
+
+                        {{!-- <a href="/add-to-cart/{{this._id}}" style="margin: bottom 1rem;" class="btn btn-primary  ">Add To Cart</a> --}}
+                        <button onclick="addToCart('{{this._id}}')" style=""class="btn-btn-success button">Add To Cart</button>
+                    </div>
+                </div>
+                </section>
+                {{/each}} 
+                </div>
+
+                
+            
+        </div>   
+       
+       </body>
+
+       <script>
+           
+       </script>
+
+       <style>
+.card-image{
+    height:10rem;
+    width: auto;
+}
+.products{
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.card-text{
+    height: 3rem;
+    width: auto;
+}
+
+.button{
+    background-color: green;
+    align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+           .footer {
+               position: fixed;
+            padding: 10px 10px 0px 10px;
+            bottom: 0;
+            width: 100%;
+            height:40px;
+            margin-top: 5rem;
+            
+        }
+
+       </style>

@@ -1,0 +1,60 @@
+
+<section>
+
+    <div class="container">
+        <div class="mt-5 mb-5">
+            <a style="margin-left: 60rem;" href="admin/add-product"class="btn btn-success ">Add Product</a>
+
+        </div>
+        <table class="table mt-5 " id="productsTable">
+  <thead>
+    <tr>
+      <th scope="col">NO</th>
+      <th scope="col">Name</th>
+      <th scope="col">Discription</th>
+      <th scope="col">Prize</th>
+
+      <th scope="col">Image</th>
+      <th scope="col">Options</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+
+      {{#each product}}
+    <tr>
+
+      
+      <th scope="row">{{@key}}</th>
+      <td>{{this.product_name}}</td>
+      <td>{{this.product_description}}</td>
+      <td>{{this.prize}}</td>
+           
+
+      <td><img style=" width:30%;height:30%" src="/product-image/{{this._id}}.jpeg" alt=""></td>
+   
+    <td style="">
+              <a class="btn btn-primary mb-3" href="admin/edit-product/{{this._id}}">EDIT</a>
+
+
+              <a class="btn btn-danger mb-3"  href="admin/delete-product/{{this._id}}" onclick="return confirm('Are You Sure Want to Delete This {{this.product_name}}?')" >DELETE</a>
+
+            </td>
+   
+    </tr>
+    {{/each}}
+    
+  </tbody>
+</table>
+    </div>
+</section>
+
+<script>
+
+$(function(){
+
+  $('#productsTable').DataTable();
+});
+
+</script>

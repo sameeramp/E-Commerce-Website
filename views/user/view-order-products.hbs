@@ -1,0 +1,39 @@
+<h1 class="text-center my-3 text-success"  style="font-family: arif;">ordered products</h1>
+<div class="container">
+
+
+    <div class=" mt-4 products">
+            
+             <div class="row">
+                 {{#each products}}
+            <section class=" col-md-3 ">
+               
+
+                <div class="card my-4 border-secondary">
+                    <img style="" src="/product-image/{{this.product._id}}.jpeg" class="card-img-top card-image" alt="...">
+                    <div class="card-body">
+                        <h5 style="" class="card-title text-center">{{this.product.product_name}}</h5>
+                        <p class="card-text " style="" >Quantity:{{this.quantity}}</p>
+                        <h5 style="" class="card-title mt-4">RS:{{this.product.prize}}</h5>
+
+                    </div>
+                </div>
+
+
+                </section>
+                {{/each}} 
+                </div>
+
+                
+            
+        </div>   
+       
+</div>
+
+<style>
+    .card-image{
+    height:10rem;
+    width: auto;
+}
+</style>
+

@@ -1,0 +1,224 @@
+<body>
+<div>
+  
+    <div class=" container loginpage primary  border form  mt-5  form-content w-50 box-shadow" >
+      <div style=" ">
+      <h1 class="mt-5 mb-5  text-white ">LOGIN </h1>
+
+      <form action="/login" method="post" class="">
+        {{#if loginErr}}
+        <p class="text-danger">{{loginErr}}</p>
+        {{/if}}
+        <p class="text-white mt-3 me-5">Please Enter Your Email & Password</p>
+        <div class="mb-3">
+          <input type="email" style="width: 70%;" class="form-control ms-5 inputbox" name="Email" id="exampleInputEmail1"
+            aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+          <input type="password" style="width: 70%;" class="form-control ms-5 inputbox"   name="Password" id="myInput" value=""  > 
+
+
+ <input type="checkbox" class="text-white " onclick="myFunction()"><span class="text-white">show password</span>
+          
+
+        </div>
+
+        <button type="submit" class="btn btn-primary loginbutton text-white">LOGIN</button>
+        <div class="d-flex">
+          <p class="small fw-bold mt-5 pt-1 mb-0 signup text-white">Don't have an account? <a href="/signup"
+              class="link-danger ">Signup</a></p>
+          <p class="small fw-bold mt-5 pt-1 mb-0 ms-5 text-white">Forgott Password? <a href="#" class="link-danger">Click here</a>
+          </p>
+        </div>
+
+      </form>
+    </div>
+    </div>
+  </div>
+</body>
+
+<script>
+
+  function myFunction() {
+    var x = document.getElementById("myInput");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  }
+</script>
+
+{{!-- <style>
+  .loginpage {
+
+    background-color: rgb(150, 243, 197);
+    border: 2rem;
+    margin-top: 4rem;
+
+    margin-left: 18rem;
+    padding-left: 10rem;
+
+    margin-right: 18rem;
+
+    min-height: 60vh;
+    min-width: 60vh;
+
+
+
+
+  }
+
+  .login {
+    margin-top: 2rem;
+    padding-left: 5rem;
+  }
+
+  .loginbutton {
+
+    margin-left: 7rem;
+    margin-top: 1rem;
+  }
+
+  .signup {
+    text-align: left;
+
+  }
+
+
+
+
+
+
+
+
+
+
+  body {
+    background-image: linear-gradient(to bottom right, red, yellow);
+  }
+
+  .footer {
+    position: fixed;
+    padding: 10px 10px 0px 10px;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    background: grey;
+  }
+</style> --}}
+
+
+{{!-- 
+<h1>New</h1>
+
+
+<section class="h-100 bg-dark">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card card-registration my-4">
+          <div class="row g-0">
+            <div class="col-xl-6 d-none d-xl-block">
+              <h1 class="text-black"> GUESTOSO</h1>
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSl8MJEY4B95M3AxjloDE18_59CDZiOWDb4PA&usqp=CAU" 
+                alt="Sample photo" class="img-fluid"
+                style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;height:32.7rem" />
+            </div>
+            <div class="col-xl-6">
+              <div class="card-body p-md-5 text-black bg-secondary">
+
+               
+              
+
+                
+
+              
+
+               
+
+               
+
+                 <h1 class="mt-5 mb-5  text-black ">LOGIN </h1>
+
+      <form action="/login" method="post" class="">
+        {{#if loginErr}}
+        <p class="text-danger">{{loginErr}}</p>
+        {{/if}}
+        <p class="text-black mt-3 me-5">Please Enter Your Email & Password</p>
+
+                 <div class="mb-3">
+          <input type="email" style="width: 70%;" class="form-control ms-5 inputbox" name="Email" id="exampleInputEmail1"
+            aria-describedby="emailHelp">
+        </div>
+               
+
+
+                <div class="mb-3">
+          <input type="password" style="width: 70%;" class="form-control ms-5 inputbox"   name="Password" id="myInput" value=""  > 
+
+
+ <input type="checkbox" class="text-white " onclick="myFunction()"><span class="text-black">show password</span>
+          
+
+        </div>
+
+               
+
+<button type="submit" class="btn btn-primary loginbutton text-black">LOGIN</button>
+        <div class="d-flex">
+          <p class="small fw-bold mt-5 pt-1 mb-0 signup text-black">Don't have an account? <a href="/signup"
+              class="link-danger ">Signup</a></p>
+          <p class="small fw-bold mt-5 pt-1 mb-0 ms-5 text-black">Forgott Password? <a href="#" class="link-danger">Click here</a>
+          </p>
+        </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> --}}
+
+
+
+
+<style>
+
+body{
+
+    background-color: #152733;
+    font-family: sans-serif;
+},
+.form-holder{
+      display: flex;                               
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      min-height: 100vh;
+}
+.form-content{
+  position: relative;
+    text-align: center;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+  
+}
+
+.inputbox{
+  border-radius: 10px;
+},
+
+
+</style>

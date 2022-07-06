@@ -1,0 +1,94 @@
+<section>
+    <h1 style="text-align:center ; margin: top 1rem;margin: bottom 1rem;">CART PAGE</h1>
+    <div class="container">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">NO</th>
+                    <th scope="col">Item</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+
+ {{#each products}}
+                <tr>
+                    
+                    <th scope="row">1</th>
+   
+                    <td ><img style="height: 30px; width:30px;" src="/product-image/{{this.product._id}}.jpeg" alt=""></td>
+                    <td>{{this.product.product_name}}</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-secondary me-3" onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}',-1)">-</button>
+                         <span id="{{this.product._id}}">{{this.quantity}}</span>
+                          
+                         <button type="button" class="btn btn-secondary ms-3" onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}',1)"> +</button>
+
+                         </td>
+
+                         <td>RS:{{this.product.prize}}</td>
+                    <td> <a href=""><button type="button" class="btn btn-danger">Remove</button></a></td>
+                    
+
+                    
+                </tr>
+                {{/each}}
+
+            </tbody>
+        </table>
+        
+<hr>
+
+<h6 style="margin-left: 53rem;" >Total Amount Rs:<span id="total">{{totalvalue}}</span> </h6> 
+
+{{!-- <input class="form-control w-25 ms-auto"   type="text"> --}}
+<a href="/place-order"><button type="button" class="btn btn-success ">Place Order</button></a>
+
+
+    </div>
+</section>
+
+<section > 
+
+    
+</section>
+
+<script>
+function changeQuantity(cartId,proId,userId,count){
+let quantity=parseInt(document.getElementById(proId).innerHTML)
+count=parseInt(count)
+            //console.log(userId,'userrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr')
+
+    $.ajax({
+        url:'/change-product-quantity',
+        data:{
+            user:userId,
+            cart:cartId,
+            product:proId,
+            count:count,
+            quantity:quantity,
+           // prize:prize
+        },
+        method:'post',
+        success:(response)=>{
+            if(response.removeProduct){
+                alert("product removed from cart")
+                location.reload()
+
+            }else{
+                document.getElementById(proId).innerHTML=quantity+count
+                document.getElementById('total').innerHTML=response.total
+                //console.log(total,'responseeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
+
+            }
+            
+        }
+    })
+}
+</script>

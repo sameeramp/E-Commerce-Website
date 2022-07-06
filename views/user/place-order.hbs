@@ -1,0 +1,151 @@
+<body>
+  
+
+
+
+
+  <div class="container row  border  text-white mt-5 ms-5 " style="height:25rem ;">
+    <h1 style="font-family: arif;">Place Order</h1>
+    <form id="checkout-form" action="/place-order" method="post">
+  <div class="row">
+    
+  <div class="form-group">
+    <label for="inputAddress">Address</label>
+    <input type="text" class="form-control w-50 inputbox" name="address1" id="inputAddress " placeholder="1234 Main St">
+  </div>
+  <div class="form-group">
+    <label for="inputAddress2">Address 2</label>
+    <input type="text" class="form-control w-50" name="address2" id="inputAddress2" placeholder="Apartment, studio, or floor">
+  </div>
+  </div>
+  
+
+  <div class="form-row">
+    <div class="form-group col-md-6 inputbox">
+      <label for="inputCity">City</label>
+      <input type="text" class="form-control" name="city" id="inputCity">
+    </div>
+    
+    <div class="form-group col-md-2">
+      <label for="inputZip">Zip</label>
+      <input type="text" class="form-control inputbox" name="zip" id="inputZip">
+    </div>
+  </div>
+  
+<input type="text" id="userId" name="userId" value="{{user._id}}" hidden>
+<div class="card border-success mb-3 " style="max-width: 18rem;margin-left:auto;margin-top:-15rem">
+  <div class="card-header bg-transparent border-success text-primary">Total Amount RS:{{total}}</div>
+  <div class="card-body text-success">
+    <h5 class="card-title">payment Methods</h5>
+    <div class="custom-control custom-radio">
+  <input type="radio" id="customRadio1" name="onlinepayment" class="custom-control-input">
+  <label class="custom-control-label" for="customRadio1">Online Payment</label>
+</div>
+<div class="custom-control custom-radio">
+  <input type="radio" id="customRadio2" name="cod" class="custom-control-input">
+  <label class="custom-control-label" for="customRadio2">COD</label>
+</div>
+  </div>
+  <div class="card-footer bg-transparent border-success ">
+
+    <a href="/cart"> <button type="button" class="btn btn-danger" name="button">Back</button> </a>
+      {{!-- <button type="button" class="btn btn-danger" name="button">Back</button> --}}
+
+      <button type="submit" class="btn btn-success ms-5" name="placeorder" >Place Order</button>
+
+  </div>
+</div>
+</div>
+</form>
+</body>
+
+<script>
+  $("#checkout-form").submit((e)=>{
+    e.preventDefault()
+    $.ajax({
+      url:'/place-order',
+      method:'post',
+      data:$('#checkout-form').serialize(),
+      success:(response)=>{
+        alert(response)
+        if(response.codSuccess){
+        
+          location.href='/order-success'
+        }else{
+          razorpayPayment(response)
+        }
+        
+      //console.log(response)
+      }
+    })
+  })
+
+  function razorpayPayment(order){
+
+    var options = {
+    "key": "rzp_test_yIuy0HVv1L9RRS", // Enter the Key ID generated from the Dashboard
+    "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Guestoso",
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "handler": function (response){
+        //alert(response.razorpay_payment_id);
+       // alert(response.razorpay_order_id);
+        //alert(response.razorpay_signature);
+
+        verifyPayment(response,order)
+    },
+    "prefill": {
+        "name": "Gaurav Kumar",
+        "email": "gaurav.kumar@example.com",
+        "contact": "9999999999"
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+  
+  var rzp1 = new Razorpay(options);
+  rzp1.open();
+  }
+  function verifyPayment(payment,order){
+    $.ajax({
+      url:'/verify-payment',
+      data:{
+        payment,
+        order
+      },
+      method:'post',
+      success:(response)=>{
+        if(response.status){
+          location.href ='/order-success'
+        }else{
+          alert('payment failed')
+        }
+      }
+    })
+  }
+</script>
+
+<style>
+
+  
+
+  body{
+
+    background-color: #152733;
+    font-family: sans-serif;
+},
+
+.inputbox{
+  border-radius: 10px;
+  },
+
+
+
+</style>

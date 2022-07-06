@@ -1,0 +1,33 @@
+<section class="container">
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">no</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Date</th>
+      <th scope="col">Status</th>
+            <th scope="col">View orderd products</th>
+
+      
+
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      {{#each orders}}
+      <th scope="row">1</th>
+      {{!-- <td>{{this.item}}</td> --}}
+      <td>{{this.totalAmount}}</td>
+      {{!-- <td>{{this.quantity}}</td> --}}
+       <td>{{this.date}}</td>
+      <td>{{this.status}}</td>
+<td><a href="/view-order-products/{{this._id}}"class="btn btn-primary">view orderd products</a>
+
+</td>
+    </tr>
+  {{/each}}
+  </tbody>
+</table>
+
+</section>
